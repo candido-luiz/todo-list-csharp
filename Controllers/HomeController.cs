@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TodoList.Models;
+using TodoList.ViewModels;
 
 namespace TodoList.Controllers;
 
@@ -15,7 +16,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        var myTask = new TodoTask
+        {
+            Title = "Primeira Task",
+            CreatedAt = DateTime.Now,
+            Status = Enums.StatusEnum.Active,
+        };
+
+        return View(myTask);
     }
 
     public IActionResult Privacy()
