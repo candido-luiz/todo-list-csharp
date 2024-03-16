@@ -4,10 +4,9 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome  @Model.Title</h1>
-    <p>@Model.Id</p>
-    <p>@Model.Title</p>
-    <p>@Model.CreatedAt</p>
-    <p>@((int)Model.Status)</p>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>Adicionar tarefa</h1>
+    <form class="container d-flex justify-content-center gap-2">
+        <input type="text" name="task_title" id="task_title">
+        <input type="submit" value="Criar">
+    </form>
 </div>
