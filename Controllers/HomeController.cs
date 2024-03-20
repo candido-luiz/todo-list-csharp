@@ -9,6 +9,8 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
+    private static List<TodoTask> listaTasks = new List<TodoTask>();
+
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
@@ -16,14 +18,17 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var myTask = new TodoTask
-        {
-            Title = "Primeira Task",
-            CreatedAt = DateTime.Now,
-            Status = Enums.StatusEnum.Active,
-        };
+        ViewBag.ListaTasks = listaTasks;
 
-        return View(myTask);
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AdicionarTask(TodoTask novaTask)
+    {
+        // novaTask.Id =  Guid.NewGuid(); // Define o ID da nova task
+        listaTasks.Add(novaTask); // Adiciona a nova task à lista
+        return RedirectToAction("Index", "Home"); // Redireciona para a página inicial ou outra página desejada
     }
 
     public IActionResult Privacy()
