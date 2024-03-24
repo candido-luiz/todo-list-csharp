@@ -31,6 +31,17 @@ public class HomeController : Controller
         return RedirectToAction("Index", "Home"); // Redireciona para a página inicial ou outra página desejada
     }
 
+    public IActionResult RemoverTask(Guid id)
+{
+    var taskToRemove = listaTasks.FirstOrDefault(task => task.Id == id);
+    if (taskToRemove != null)
+    {
+        listaTasks.Remove(taskToRemove);
+    }
+
+    return RedirectToAction("Index", "Home"); // Redireciona para a página inicial ou outra página desejada
+}
+
     public IActionResult Privacy()
     {
         return View();

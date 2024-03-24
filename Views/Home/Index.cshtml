@@ -18,7 +18,10 @@
     <ul class="list-group">
         @foreach (var task in ViewBag.ListaTasks)
         {
-            <li class="list-group-item">@task.Title</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>@task.Title</span>
+                <a asp-action="RemoverTask" asp-route-id="@task.Id" class="btn btn-danger">Remover</a>
+            </li>
         }
     </ul>
 }
