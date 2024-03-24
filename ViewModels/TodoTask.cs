@@ -13,6 +13,8 @@ namespace TodoList.ViewModels
         public TodoTask()
         {
           Id = Guid.NewGuid();
+          CreatedAt = DateTime.Now;
+          Status = Enums.StatusEnum.Active;
         }
         
     }

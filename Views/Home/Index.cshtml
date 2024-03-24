@@ -3,11 +3,29 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome  @Model.Title</h1>
-    <p>@Model.Id</p>
-    <p>@Model.Title</p>
-    <p>@Model.CreatedAt</p>
-    <p>@((int)Model.Status)</p>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1 class="mt-5">Sua Lista de Tarefas</h1>
+
+<form asp-action="AdicionarTask" asp-controller="Home" method="post" class="mb-4">
+    <div class="input-group mb-3">
+        <input asp-for="Title" class="form-control" placeholder="Digite o título da tarefa" aria-label="Digite o título da tarefa" aria-describedby="botao-adicionar" />
+        <button type="submit" class="btn btn-primary" id="botao-adicionar">Adicionar Task</button>
+    </div>
+</form>
+
+@if (ViewBag.ListaTasks != null && ViewBag.ListaTasks.Count > 0)
+{
+    <h2 class="mt-5">Tarefas Adicionadas:</h2>
+    <ul class="list-group">
+        @foreach (var task in ViewBag.ListaTasks)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>@task.Title</span>
+                <a asp-action="RemoverTask" asp-route-id="@task.Id" class="btn btn-danger">Remover</a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="mt-5">Nenhuma tarefa adicionada ainda.</p>
+}
